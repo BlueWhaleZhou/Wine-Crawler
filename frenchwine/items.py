@@ -7,6 +7,7 @@
 
 from scrapy.item import Item, Field
 
+#define items to crawl
 
 class FrenchwineItem(Item):
 #	title = Field()
