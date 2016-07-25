@@ -13,16 +13,16 @@ class WinedetailsSpider(BaseSpider):
         reader = csv.reader(fw)
         my_list = list(reader)  
     i = 0
-    while i < 5016:
+    while i < 500:
         start_urls.extend(my_list[i])
         i = i + 1
+
     def parse(self, response):
-        
-        item = FrenchwineItem()
         sel = Selector(response)
-        items = []
-        item["merchant_title"] = sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
-        item["link"] = sel.xpath('div[@class="header-item"]/a/@href').extract()
-        items.append(item)
+        merchant_titles =  sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
+        for merchant_title in merchant_titles:
+            item = FrenchwineItem()
+            item["merchant_title"] = merchant_title
+            item["link"] = sel.xpath('div[@class="header-item"]/a/@href').extract()
         
-        return items
+        yield item
