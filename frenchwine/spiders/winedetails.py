@@ -18,11 +18,9 @@ class WinedetailsSpider(BaseSpider):
         i = i + 1
 
     def parse(self, response):
+        item = FrenchwineItem()
         sel = Selector(response)
-        merchant_titles =  sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
-        for merchant_title in merchant_titles:
-            item = FrenchwineItem()
-            item["merchant_title"] = merchant_title
-            item["link"] = sel.xpath('div[@class="header-item"]/a/@href').extract()
-        
+        item["merchant_title"] =  sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
+        item["link"] = sel.xpath('div[@class="header-item"]/a/@href').extract()
+        item["address"] = sel.xpath('div[@class="merc-item"]/div/div/text()').extract()
         yield item
