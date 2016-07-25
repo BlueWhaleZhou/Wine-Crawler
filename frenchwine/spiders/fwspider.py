@@ -1,5 +1,6 @@
 #french wine spider
-from scrapy.spiders import BaseSpider
+
+from scrapy.spider import BaseSpider
 from scrapy.selector import Selector
 from frenchwine.items import FrenchwineItem
 

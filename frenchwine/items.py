@@ -14,3 +14,4 @@ class FrenchwineItem(Item):
 #	title_bot = Field()
 	link = Field()
 	link_bot = Field()
+    merchant_title = Field()
