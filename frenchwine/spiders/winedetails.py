@@ -14,7 +14,12 @@ class WinedetailsSpider(BaseSpider):
         start_urls = list(reader) 
     
     def parse(self, response):
+        
+        item = FrenchwineItem()
         sel = Selectro(response)
         items = []
-
-         = sel.xpath('')
+        item["merchant_title"] = sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
+        item["link"] = sel.xpath('div[@class="header-item"]/a/@href').extract()
+        items.append(item)
+        
+        return items
