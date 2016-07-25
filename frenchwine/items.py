@@ -12,6 +12,6 @@ from scrapy.item import Item, Field
 class FrenchwineItem(Item):
 #	title = Field()
 #	title_bot = Field()
-	link = Field()
-	link_bot = Field()
+    link = Field()
+    link_bot = Field()
     merchant_title = Field()
