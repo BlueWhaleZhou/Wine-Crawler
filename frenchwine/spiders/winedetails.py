@@ -12,8 +12,8 @@ class WinedetailsSpider(BaseSpider):
     with open('/home/ubuntu/Wine-Crawler/fw_s1.csv', 'rb') as fw:
         reader = csv.reader(fw)
         my_list = list(reader)  
-    i = 900
-    while i < 1000:
+    i = 1500
+    while i < 1800:
         start_urls.extend(my_list[i])
         i = i + 1
 	
