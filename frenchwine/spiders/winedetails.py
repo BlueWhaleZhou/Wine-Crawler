@@ -9,17 +9,17 @@ class WinedetailsSpider(BaseSpider):
     name = "winedetails"
     allowed_domains = ["wine-searcher.com"]
     start_urls = []
-    with open('/home/qinghai/Wine-Crawler/fw_s1.csv', 'rb') as fw:
+    with open('/home/ubuntu/Wine-Crawler/fw_s1.csv', 'rb') as fw:
         reader = csv.reader(fw)
         my_list = list(reader)  
-    i = 0
-    while i < 100:
+    i = 900
+    while i < 1000:
         start_urls.extend(my_list[i])
         i = i + 1
 	
     def parse(self, response):
         items = []
-	item = FrenchwineItem()
+        item = FrenchwineItem()
         sel = Selector(response)
         item["merchant_title"] =  sel.xpath('//div[@class="merchant-header"]/h1/text()').extract()
         item["link"] = sel.xpath('//div[@class="header-item"]/a/@href').extract()
