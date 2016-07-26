@@ -12,22 +12,18 @@ class FrenchwineSpider(BaseSpider):
 	step = 25
 	i = 1
 	while i <= 7626:
-		url = "http://www.wine-searcher.com/biz/producers/france?s=" + str(i)
-		i = i + step
-		start_urls.append(url)
+	    url = "http://www.wine-searcher.com/biz/producers/france?s=" + str(i)
+	    i = i + step
+	    start_urls.append(url)
 #	print start_urls
-	def	parse(self, response):
-		sel = Selector(response)
-		items = []
-#		item["title"] = sel.xpath('//td[@class="wlrwdt wlbdrl vtop"]/a/text()').extract() 
-#		item["title_bot"] = sel.xpath('//td[@class="wlrwdt wlbdrl noborderbtm vtop"]/a/text()').extract()
-		links = sel.xpath('//td[@class="wlrwdt wlbdrl vtop"]/a/@href').extract()
-		
-		for link in links:
-			item = FrenchwineItem()
-			item["link"] = link
-			item["link_bot"] = sel.xpath('//td[@class="wlrwdt wlbdrl noborderbtm vtop"]/a/href').extract()
-			items.append(item)
-		
-		return items
+	def    parse(self, response):
+	    item = FrenchwineItem()
+	    sel = Selector(response)
+	    items = []
+#	    item["title"] = sel.xpath('//td[@class="wlrwdt wlbdrl vtop"]/a/text()').extract() 
+#	    item["title_bot"] = sel.xpath('//td[@class="wlrwdt wlbdrl noborderbtm vtop"]/a/text()').extract()
+	    item["link"] = sel.xpath('//td[@class="wlrwdt wlbdrl vtop"]/a/@href').extract()
+	    item["link_bot"] = sel.xpath('//td[@class="wlrwdt wlbdrl noborderbtm vtop"]/a/href').extract()
+	    items.append(item)
+	    return items
 		
